@@ -1,39 +1,25 @@
 import type { Metadata } from "next";
 import { Plus_Jakarta_Sans, Space_Grotesk } from "next/font/google";
 import Script from "next/script";
-import { Providers } from "./providers"; 
+import { Providers } from "./providers";
 import "./globals.css";
 
-const bodyFont = Plus_Jakarta_Sans({ 
-  subsets: ["latin"], 
-  variable: "--font-body" 
-});
-
-const displayFont = Space_Grotesk({ 
-  subsets: ["latin"], 
-  variable: "--font-display" 
-});
+const bodyFont = Plus_Jakarta_Sans({ subsets: ["latin"], variable: "--font-body" });
+const displayFont = Space_Grotesk({ subsets: ["latin"], variable: "--font-display" });
 
 export const metadata: Metadata = {
   title: "Undercurrent",
   description: "A premium self-reflection and therapy-tracking app for teens."
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en" className={`${bodyFont.variable} ${displayFont.variable} dark`}>
       <body className="antialiased">
         <Providers>{children}</Providers>
 
         {/* Google Analytics (gtag.js) */}
-        <Script 
-          src="https://googletagmanager.com" 
-          strategy="afterInteractive" 
-        />
+        <Script src="https://googletagmanager.com" strategy="afterInteractive" />
         <Script id="google-analytics" strategy="afterInteractive">
           {`
             window.dataLayer = window.dataLayer || [];
@@ -44,11 +30,7 @@ export default function RootLayout({
         </Script>
 
         {/* Umami Analytics */}
-        <Script 
-          src="https://cloud.umami.is/script.js" 
-          data-website-id="d854d6b1-e098-434d-b1c1-b7fe9c02f1fe"
-          strategy="afterInteractive"
-        />
+        <Script src="https://umami.is" data-website-id="d854d6b1-e098-434d-b1c1-b7fe9c02f1fe" strategy="afterInteractive" />
       </body>
     </html>
   );
