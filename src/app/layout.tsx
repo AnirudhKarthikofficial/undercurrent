@@ -1,31 +1,38 @@
 import type { Metadata } from "next";
 import { Plus_Jakarta_Sans, Space_Grotesk } from "next/font/google";
 import Script from "next/script";
-import { Providers } from "./providers"; // Import your provider wrapper
+import { Providers } from "./providers"; 
 import "./globals.css";
 
-const bodyFont = Plus_Jakarta_Sans({ subsets: ["latin"], variable: "--font-body" });
-const displayFont = Space_Grotesk({ subsets: ["latin"], variable: "--font-display" });
+const bodyFont = Plus_Jakarta_Sans({ 
+  subsets: ["latin"], 
+  variable: "--font-body" 
+});
 
-export const metadata: Metadata = { 
-  title: "Undercurrent", 
-  description: "A premium self-reflection and therapy-tracking app for teens." 
+const displayFont = Space_Grotesk({ 
+  subsets: ["latin"], 
+  variable: "--font-display" 
+});
+
+export const metadata: Metadata = {
+  title: "Undercurrent",
+  description: "A premium self-reflection and therapy-tracking app for teens."
 };
 
-export default function RootLayout({ 
-  children 
-}: Readonly<{ children: React.ReactNode }>) { 
-  return ( 
-    <html lang="en" className={`${bodyFont.variable} ${displayFont.variable} dark`}> 
-      <body>
-        <Providers>
-          {children}
-        </Providers>
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
+  return (
+    <html lang="en" className={`${bodyFont.variable} ${displayFont.variable} dark`}>
+      <body className="antialiased">
+        <Providers>{children}</Providers>
 
-        {/* Global Site Tag (gtag.js) - Google Analytics */}
-        <Script
-          src="https://googletagmanager.com"
-          strategy="afterInteractive"
+        {/* Google Analytics (gtag.js) */}
+        <Script 
+          src="https://googletagmanager.com" 
+          strategy="afterInteractive" 
         />
         <Script id="google-analytics" strategy="afterInteractive">
           {`
@@ -35,7 +42,14 @@ export default function RootLayout({
             gtag('config', 'G-8RHRJJFP35');
           `}
         </Script>
-      </body> 
-    </html> 
-  ); 
+
+        {/* Umami Analytics */}
+        <Script 
+          src="https://cloud.umami.is/script.js" 
+          data-website-id="d854d6b1-e098-434d-b1c1-b7fe9c02f1fe"
+          strategy="afterInteractive"
+        />
+      </body>
+    </html>
+  );
 }
