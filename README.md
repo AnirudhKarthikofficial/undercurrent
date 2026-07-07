@@ -16,3 +16,5 @@ Undercurrent is a teen-focused self-reflection and therapy-tracking app built wi
 - `/quiz` interactive discovery flow with persisted progress.
 - `/dashboard` therapy command center for authenticated users.
 - `/api/analyze` secure server-side proxy to the g4f OpenAI-compatible endpoint.
+## FYI:
+This repo is a fork from Undercurrent's REPO the orginal owner is Lakshin H 
